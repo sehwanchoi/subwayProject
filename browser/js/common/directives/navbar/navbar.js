@@ -1,17 +1,16 @@
 'use strict';
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
+app.directive('subbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
 
     return {
         restrict: 'E',
         scope: {},
-        templateUrl: 'js/common/directives/navbar/navbar.html',
+        templateUrl: 'js/common/directives/navbar.html',
         link: function (scope) {
 
             scope.items = [
                 { label: 'Home', state: 'home' },
-                { label: 'About', state: 'about' },
-                { label: 'Tutorial', state: 'tutorial' },
-                { label: 'Members Only', state: 'membersOnly', auth: true }
+                { label: 'Signin', state: 'signin' },
+                { label: 'register', state: 'register' },
             ];
 
             scope.user = null;

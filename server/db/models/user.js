@@ -3,30 +3,8 @@ var crypto = require('crypto');
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    wakeupTime: {
-        type: String
-    },
-    commute: {
-        subway: {
-            type: [String]
-        },
-        LIRR: {
-            type: [String]
-        },
-        required: true
-    },
-    phoneNumber: {
-        type: Number,
-        required: true,
-        unique: true
-    },
     email: {
-        type: String,
-        unique: true
+        type: String
     },
     password: {
         type: String
@@ -34,14 +12,19 @@ var schema = new mongoose.Schema({
     salt: {
         type: String
     },
-    isAdmin: {
-        type: Boolean,
-        default: false
+    name: {
+        type: String,
+        required: true
+    },
+    commute: {
+        subway: {
+            type: [String]
+        },
+        LIRR: {
+            type: [String]
+        }
     }
 });
-
-
-schema.plugin(unique);
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
 // are all used for local authentication security.
