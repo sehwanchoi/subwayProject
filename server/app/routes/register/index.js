@@ -14,6 +14,7 @@ router.post('/', function(req, res, next) {
     var phoneNumer = req.body.phoneNumber;
     var name = req.body.name;
     var commute = req.body.commute;
+    console.log('COMMMUUUUTE', commute);
     var time = req.body.time;
 
 	mongoose.model('User').findOne({email: email}, function(err, user){

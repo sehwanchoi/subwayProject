@@ -39,6 +39,7 @@ er {
 }
 
 .row {
+	margin-top: 10%;
 	padding-left: 35%;
 }
 
@@ -49,6 +50,10 @@ er {
 .welcome {
 	background-color: #9D7BA9;
 	padding: 0;
+}
+
+.profileHome {
+	background-color: #197EC1;
 }
 
 .currentStatus {
@@ -86,6 +91,8 @@ er {
 
 
 .content.message {
+	padding-top: 5%;
+	padding-bottom: 0;
 	font-size: 32px;
 }
 

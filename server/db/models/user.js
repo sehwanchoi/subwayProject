@@ -21,7 +21,11 @@ var schema = new mongoose.Schema({
         type: [String]
     },
     commute: {
+<<<<<<< HEAD
+        type: [String]
+=======
        type: [String]
+>>>>>>> origin
     }
 });
 
