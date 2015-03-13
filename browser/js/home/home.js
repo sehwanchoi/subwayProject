@@ -7,7 +7,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('homeCtrl', function($scope, mtaFactory) {
+app.controller('homeCtrl', function($scope, mtaFactory, AuthService) {
 
 	mtaFactory.getServiceInfo().then(function(status) {
 		$scope.groupOne = [];
@@ -23,6 +23,7 @@ app.controller('homeCtrl', function($scope, mtaFactory) {
 		$scope.groupTwo = status2;
 	})
 
+	$scope.user = AuthService.isAuthenticated();
 
 		
 

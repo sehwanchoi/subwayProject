@@ -26,6 +26,10 @@ section {
 	padding: 0;
 }
 
+.profileHome {
+	background-color: #197EC1;
+}
+
 .currentStatus {
 	background-color: #9D7BA9;
 }
@@ -62,6 +66,7 @@ section {
 
 .content.message {
 	padding-top: 5%;
+	padding-bottom: 0;
 	font-size: 32px;
 }
 

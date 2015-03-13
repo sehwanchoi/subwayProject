@@ -22,9 +22,7 @@ var schema = new mongoose.Schema({
         type: [String]
     },
     commute: {
-        subway: {
-            type: [String]
-        }
+        type: [String]
     }
 });
 
