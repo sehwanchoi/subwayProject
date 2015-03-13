@@ -3,13 +3,25 @@ body {
 }
 
 section {
+	position: relative;
 	display: block;
 	height: 100vh;
 }
 
+.content {
+	/*width: 50%;
+	margin: 0 auto;*/
+  width: 50%;
+  margin: 0 auto;
+}
+
+/*#welcome {
+
+}*/
+
 .welcome {
 	background-color: #FFEF10;
-	top: 50%;
+/*	top: 50%;*/
 }
 
 .name {

@@ -4,6 +4,6 @@ var router = require('express').Router(),
 
 module.exports = router;
 
-router.get('/register', function(req, res, next) {
+router.get('/', function(req, res, next) {
     console.log("hello");
 });
