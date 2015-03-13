@@ -7,6 +7,21 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('registerCtrl', function($scope, registerFactory){
-	
+app.controller('registerCtrl', function($scope, registerFactory, $window, $location){
+
+	$scope.user = {
+		password:"",
+		email:"",
+		phoneNumber:"",
+		name: ""
+	};
+
+	$scope.addNewUser = function (newUser){
+		registerFactory.createNewUser(newUser).then(function(data){
+			console.log("hello in controler: ", data)
+			if(data !== null)
+			$window.location.href = '/';
+		});
+	};
+
 })

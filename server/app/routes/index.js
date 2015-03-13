@@ -7,7 +7,7 @@ var xml2js = require('xml2js');
 
 var parser = new xml2js.Parser();
 
-// router.use('/', require('./'));
+router.use('/register', require('./register'));
 
 router.get('/mta', function (req, res) {
 

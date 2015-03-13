@@ -2,8 +2,8 @@
 
 app.factory('registerFactory', function($http){
 	return {
-		getCoffeeDb: function() {
-            return $http.get('/api/register').then(function(response) {
+		createNewUser: function(user) {
+            return $http.post('/api/register', user).then(function(response) {
                 return response.data;
        		});
         }

@@ -16,6 +16,11 @@ var schema = new mongoose.Schema({
         type: String,
         required: true
     },
+
+    // added time property 
+    time: {
+        type: [String]
+    },
     commute: {
         subway: {
             type: [String]
@@ -47,7 +52,6 @@ schema.pre('save', function (next) {
     }
 
     next();
-
 });
 
 schema.statics.generateSalt = generateSalt;

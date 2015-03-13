@@ -12,6 +12,8 @@ var parser = new xml2js.Parser();
 
 module.exports = router;
 
+router.use('/register', require('./register.js'));
+
 // getting info from MTA
 
 router.get('/', function (req, res) {

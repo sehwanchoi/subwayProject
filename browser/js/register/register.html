@@ -1,18 +1,51 @@
 <div class="register">
-	
+	<form ng-submit="addNewUser(user)">
 	<section class="name">
 		<div class="content">
 		what is your name?<br>
-		<input type="text" id="name"> <br><br><button type="button" class="btn btn-primary btn-lg sharp">next</button>
+		<input type="text" name="name" ng-model="user.name"> <br><br><button type="button" class="btn btn-primary btn-lg sharp">next</button>
 		</div>
 	</section>
 
 	<section class="wakeUpTime">
 		<div class="content">
-		hi (name), what time do you wake up?<br>
-		<button type="button" class="btn btn-primary btn-lg sharp">next</button>
+		hi {{ user.name }}, what time do you wake up?<br>
+
+		<div class="select-div">
+			<select name="time1">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+			</select>
 		</div>
+		:	
+		<div class="select-div">
+			<select name="minute">
+				<option value="0">0</option>
+				<option value="30">30</option>
+			</select>
+		</div>
+		AM
+
+		<form>
+		  Select a time:
+		  <input type="time" name="usr_time">
+		</form>
+
+		<button type="button" class="btn btn-primary btn-lg sharp">next</button>
+
+		</div>
+
 	</section>
+
 
 	<section class="commuteMethod">
 		<div class="content">
@@ -36,15 +69,17 @@
 		<div class="content">
 		Almost there!
 		Sign up and tell me where to send your alerts.
-	<form>
+
+	<!-- <form ng-submit="addNewUser(user)"> -->
 	<div class="form-group">
-		(phonenumber,no dashes) <input type="text" id="name"><br>
-		(email) <input type="email" id="email"><br>
-		(password) <input type="password" id="name">
+		(phonenumber,no dashes) <input type="text" name="phone" ng-model="user.phoneNumber"><br>
+		(email) <input type="email" name="email" ng-model="user.email"><br>
+		(password) <input type="password" name="password" ng-model="user.password">
 		</div>
-	</form>
-		<button type="button" class="btn btn-primary btn-lg sharp">Finish</button>
+		<button type="submit" class="btn btn-primary btn-lg sharp">Finish</button>	
+	<!-- </form> -->
 		</div>
+		</form>
 	</section>
 
 </div>
