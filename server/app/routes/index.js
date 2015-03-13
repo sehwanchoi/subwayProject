@@ -7,8 +7,6 @@ var xml2js = require('xml2js');
 
 var parser = new xml2js.Parser();
 
-console.log('hello');
-
 // router.use('/', require('./'));
 
 router.get('/service', function (req, res) {
@@ -45,7 +43,6 @@ router.get('/service', function (req, res) {
 				};
 				trains.push(trainObj);
 			}
-
 
 		}
 			res.json(trains);

@@ -1,23 +1,28 @@
 'use strict';
+var path = require('path');
 var express = require('express');
 var app = express();
-
 module.exports = app;
+
 require('./configure')(app);
 
 app.use('/api', require('./routes'));
 
-app.get('/*', function (req, res) {
+app.use(function (req, res, next) {
 
-    if (req.xhr) {
-        return res.status(404).send('You are probably looking for something that starts with /api.');
+    if (path.extname(req.path).length > 0) {
+        res.status(404).end();
+    } else {
+        next(null);
     }
 
-    res.sendFile(app.get('indexHTMLPath'));
+});
 
+app.get('/*', function (req, res) {
+    res.sendFile(app.get('indexHTMLPath'));
 });
 
 // Error catching endware.
 app.use(function (err, req, res, next) {
-    res.status(err.status).send({ error: err.message });
+    res.status(err.status).send(err.message);
 });
