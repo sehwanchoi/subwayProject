@@ -9,7 +9,7 @@
 
 	<section class="wakeUpTime">
 		<div class="content">
-		hi {{ user.name }}, what time do you wake up?<br>
+		{{ user.name }}, what time do you wake up?<br>
 
 		<div class="select-div">
 			<select name="time1">
@@ -49,9 +49,12 @@
 	<section class="commuteMethod">
 		<div class="content">
 		How do you commute? <br>
-		<span><button type="button" class="btn btn-primary btn-lg outline"> SUBWAY </button></span>
-		<button type="button" class="btn btn-primary btn-lg outline"> LIRR </button><br><br>
+		<span><button type="button" class="btn btn-primary btn-lg outline" ng-click="subwayClick()"> SUBWAY </button></span>
 
+		<br><br>
+		
+		<span ng-show="ifSubway">Which line(s)?<br><button type="button" class="btn btn-primary btn-sm outline" ng-repeat="subway in subwayName" name="commute" ng-click="setLine()" ng-model="user.commute"> {{ subway.name }} </button></span><br><br>
+{{user}}
 		<button type="button" class="btn btn-primary btn-lg sharp">next</button>
 		</div>
 	</section>

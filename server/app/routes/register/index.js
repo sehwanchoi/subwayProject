@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
     var password = req.body.password;
     var phoneNumer = req.body.phone;
     var name = req.body.name;
-    // var commute = req.body.commute;
+    var commute = req.body.commute;
     var time = req.body.time;
 
 	mongoose.model('User').findOne({email: email}, function(err, user){
@@ -31,7 +31,7 @@ router.post('/', function(req, res, next) {
 				password: password,
 				phoneNumer: phoneNumer,
 				name: name,
-				// commute: commute,
+				commute: commute,
 				time: time
 			}, function (err, user){
 				// if (err) return next(err);

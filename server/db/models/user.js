@@ -24,9 +24,6 @@ var schema = new mongoose.Schema({
     commute: {
         subway: {
             type: [String]
-        },
-        LIRR: {
-            type: [String]
         }
     }
 });

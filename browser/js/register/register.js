@@ -7,14 +7,30 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('registerCtrl', function($scope, registerFactory, $window, $location){
+app.controller('registerCtrl', function($scope, registerFactory, $window, $location, mtaFactory){
 
 	$scope.user = {
-		password:"",
+		name: "",
 		email:"",
+		password:"",
 		phoneNumber:"",
-		name: ""
+		time: "",
+		commute: ""
 	};
+
+	$scope.subwayName = mtaFactory.getServiceInfo().then(function(train){
+		$scope.subwayName = train;
+	})
+
+	$scope.setLine = function() {
+			$scope.user.commute = train;
+			console.log('what here', train);
+		})
+	}
+
+	$scope.subwayClick = function() {
+		$scope.ifSubway = !$scope.ifSubway;
+	}
 
 	$scope.addNewUser = function (newUser){
 		registerFactory.createNewUser(newUser).then(function(data){
