@@ -5,6 +5,7 @@ body {
 	font-size: 28px;
 }
 
+
 section {
 	position: relative;
 	display: block;
@@ -13,8 +14,12 @@ section {
 
 
 .welcome {
-	background-color: #78E7C7;
-	padding: 5% 0;
+	background-color: #9D7BA9;
+	padding: 0;
+}
+
+.status {
+	background-color: #9D7BA9;
 }
 
 .name {
@@ -41,6 +46,42 @@ section {
 	top: 40%;
 	padding: 20% 20%;
 	text-align:center;
+}
+
+.col-sm-3 {
+	padding-top: 5%;
+	padding-left: 8%;
+}
+
+.col-sm-8 {
+	top: 20%;
+}
+
+.content-home {
+	font-size: 20px;
+	text-align: center;
+}
+
+.content-home.status {
+	padding-right: 0;
+	text-align: center;
+}
+
+.content-home.message {
+	padding: 5%;
+	font-size: 28px;
+}
+
+table {
+	width: auto !important;
+}
+
+table th {
+	width: auto !important;
+}
+
+table .table-hover {
+	background-color: rgba(0,0,0,0.5);
 }
 
 input {
