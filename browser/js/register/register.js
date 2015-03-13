@@ -17,10 +17,12 @@ app.controller('registerCtrl', function($scope, registerFactory, $window, $locat
 		$scope.subwayName = train;
 	})
 
-	$scope.setLine = function() {
-			$scope.user.commute = train;
-			console.log('what here', train);
+		$scope.user.commute = [];
+	$scope.setLine = function(subway) {
+		$scope.user.commute.push(subway.name);
+		console.log($scope.user.commute);
 	}
+
 
 	$scope.subwayClick = function() {
 		$scope.ifSubway = !$scope.ifSubway;

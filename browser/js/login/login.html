@@ -1,3 +1,4 @@
+<section class="logIn">
 <form id="login-form" name="loginForm" ng-submit="loginForm.$valid && userLogin(login)">
 
     <div class="alert alert-danger" ng-show="error">
@@ -6,13 +7,19 @@
         {{ error }}
     </div>
 
+    
+        <div class="content">
+
     <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="text" ng-model="login.email" class="form-control" id="email" placeholder="Enter email">
-    </div>
-    <div class="form-group">
-        <label for="login-password">Password</label>
-        <input type="password" ng-model="login.password" class="form-control" id="login-password" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+        Yo' email <input type="text" ng-model="login.email" id="email"><br>
+        Yo' password <input type="password" ng-model="login.password" id="login-password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg sharp">LOG IN</button>  
+
+        </div>
+        </form>
+
+
 </form>
+</section>
+
