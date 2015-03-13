@@ -1,15 +1,20 @@
 <div class="register">
 	<form ng-submit="addNewUser(user)">
+
 	<section class="name">
 		<div class="content">
 		what is your name?<br>
-		<input type="text" name="name" ng-model="user.name"> <br><br><button type="button" class="btn btn-primary btn-lg sharp">next</button>
+		<input type="text" ng-model="user.name"> <br><br>
+		<div class="first">
+		<button type="button" class="btn btn-primary btn-lg" id="firstb">next</button>
+		</div>
+
 		</div>
 	</section>
 
 	<section class="wakeUpTime">
-		<div class="content">
-		{{ user.name }}, what time do you wake up?<br>
+		<div class="content" id="second">
+		hi {{ user.name }}, what time do you wake up?<br>
 
 		<div class="select-div">
 			<select name="time1">
@@ -37,9 +42,9 @@
 
 		
 		  Select a time:
-		  <input type="time" name="time" ng-model="user.time">
+		  <input type="time" ng-model="user.time">
 	
-		<button type="button" class="btn btn-primary btn-lg sharp">next</button>
+		<button type="button" class="btn btn-primary btn-lg sharp" id="secondb">next</button>
 
 		</div>
 
@@ -47,36 +52,37 @@
 
 
 	<section class="commuteMethod">
-		<div class="content">
+		<div class="content" id="third">
 		How do you commute? <br>
 		<span><button type="button" class="btn btn-primary btn-lg outline" ng-click="subwayClick()"> SUBWAY </button></span>
 
 		<br><br>
 		
 		<span ng-show="ifSubway">Which line(s)?<br><button type="button" class="btn btn-primary btn-sm outline" ng-repeat="subway in subwayName" name="commute" ng-click="setLine()" ng-model="user.commute"> {{ subway.name }} </button></span><br><br>
-{{user}}
-		<button type="button" class="btn btn-primary btn-lg sharp">next</button>
+
+		<button type="button" class="btn btn-primary btn-lg sharp" id="thirdb">next</button>
+		
 		</div>
 	</section>
 
 	<section class="goingHomeTime">
-		<div class="content">
+		<div class="content" id="fourth">
 		when do you leave work? 
-		<button type="button" class="btn btn-primary btn-lg sharp">next</button>
+		<button type="button" class="btn btn-primary btn-lg sharp" id="fourthb">next</button>
 		</div>
 	</section>
 
 
 	<section class="signUp">
-		<div class="content">
+		<div class="content" id="fifth">
 		Almost there!
 		Sign up and tell me where to send your alerts.
 
 	<!-- <form ng-submit="addNewUser(user)"> -->
 	<div class="form-group">
-		(phonenumber,no dashes) <input type="text" name="phone" ng-model="user.phoneNumber"><br>
-		(email) <input type="email" name="email" ng-model="user.email"><br>
-		(password) <input type="password" name="password" ng-model="user.password">
+		(phonenumber,no dashes) <input type="text" ng-model="user.phoneNumber"><br>
+		(email) <input type="email" ng-model="user.email"><br>
+		(password) <input type="password" ng-model="user.password">
 		</div>
 		<button type="submit" class="btn btn-primary btn-lg sharp">Finish</button>	
 	<!-- </form> -->

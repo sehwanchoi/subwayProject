@@ -11,7 +11,7 @@ router.post('/', function(req, res, next) {
 
     var email = req.body.email;
     var password = req.body.password;
-    var phoneNumer = req.body.phone;
+    var phoneNumer = req.body.phoneNumber;
     var name = req.body.name;
     var commute = req.body.commute;
     var time = req.body.time;

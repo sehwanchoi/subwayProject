@@ -10,12 +10,7 @@ app.config(function ($stateProvider) {
 app.controller('registerCtrl', function($scope, registerFactory, $window, $location, mtaFactory){
 
 	$scope.user = {
-		name: "",
-		email:"",
-		password:"",
-		phoneNumber:"",
-		time: "",
-		commute: ""
+		name: ""
 	};
 
 	$scope.subwayName = mtaFactory.getServiceInfo().then(function(train){
@@ -31,6 +26,34 @@ app.controller('registerCtrl', function($scope, registerFactory, $window, $locat
 	$scope.subwayClick = function() {
 		$scope.ifSubway = !$scope.ifSubway;
 	}
+
+
+	// scroll down on click 
+	
+	$(function(){
+		$("#firstb").click(function() {
+		    $('html,body').animate({
+		        scrollTop: $("#second").offset().top},
+		        'slow');
+		});
+
+		$("#secondb").click(function() {
+		    $('html,body').animate({
+		        scrollTop: $("#third").offset().top},
+		        'slow');
+		});
+
+		$("#thirdb").click(function() {
+		    $('html,body').animate({
+		        scrollTop: $("#fourth").offset().top},
+		        'slow');
+		});
+		$("#fourthb").click(function() {
+		    $('html,body').animate({
+		        scrollTop: $("#fifth").offset().top},
+		        'slow');
+		});
+	})
 
 	$scope.addNewUser = function (newUser){
 		registerFactory.createNewUser(newUser).then(function(data){
