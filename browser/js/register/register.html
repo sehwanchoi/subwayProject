@@ -14,35 +14,38 @@
 
 	<section class="wakeUpTime">
 		<div class="content" id="second">
-		hi {{ user.name }}, what time do you wake up?<br>
+		hi {{ user.name }}, what time do you wake up?<br><br>
 
-		<div class="select-div">
-			<select name="time1">
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">10</option>
-				<option value="11">11</option>
-			</select>
-		</div>
-		:	
-		<div class="select-div">
-			<select name="minute">
-				<option value="0">0</option>
-				<option value="30">30</option>
-			</select>
-		</div>
-		AM
+		<div class="time">
+			<!-- <div class="select-div"> -->
+				<select name="time" ng-click="setTime(time)" ng-model="user.time">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+				</select>
+		<!-- 	</div> -->
+			<er>:</er>	
+		<!-- 	<div class="select-div"> -->
+				<select name="minute" ng-model="user.minute">
+					<option value="0">0</option>
+					<option value="30">30</option>
+				</select>
+		<!-- 	</div> -->
 
-		
+				<h2>AM</h2>
+		</div>
+		<br><br>
+<!-- 
 		  Select a time:
-		  <input type="time" ng-model="user.time">
+		  <input type="time" ng-model="user.time"> -->
 	
 		<button type="button" class="btn btn-primary btn-lg sharp" id="secondb">next</button>
 
@@ -68,6 +71,36 @@
 	<section class="goingHomeTime">
 		<div class="content" id="fourth">
 		when do you leave work? 
+		<br><br>
+
+
+		<div class="time">
+			<!-- <div class="select-div"> -->
+				<select name="time" ng-click="setTime(time)" ng-model="user.time">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+				</select>
+		<!-- 	</div> -->
+			<er>:</er>	
+		<!-- 	<div class="select-div"> -->
+				<select name="minute" ng-model="user.minute">
+					<option value="0">0</option>
+					<option value="30">30</option>
+				</select>
+		<!-- 	</div> -->
+
+				<h2>PM</h2>
+		</div>
+		<br><br>
 		<button type="button" class="btn btn-primary btn-lg sharp" id="fourthb">next</button>
 		</div>
 	</section>

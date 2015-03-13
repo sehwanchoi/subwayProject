@@ -18,6 +18,7 @@ app.controller('registerCtrl', function($scope, registerFactory, $window, $locat
 	})
 
 		$scope.user.commute = [];
+
 	$scope.setLine = function(subway) {
 		$scope.user.commute.push(subway.name);
 		console.log($scope.user.commute);
@@ -26,6 +27,10 @@ app.controller('registerCtrl', function($scope, registerFactory, $window, $locat
 
 	$scope.subwayClick = function() {
 		$scope.ifSubway = !$scope.ifSubway;
+	}
+
+	$scope.setTime = function(time){
+		$scope.user.time.push(time);
 	}
 
 
