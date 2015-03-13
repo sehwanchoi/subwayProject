@@ -9,7 +9,7 @@ var parser = new xml2js.Parser();
 
 // router.use('/', require('./'));
 
-router.get('/service', function (req, res) {
+router.get('/mta', function (req, res) {
 
 	var service = [];
 	var serviceName = [];
