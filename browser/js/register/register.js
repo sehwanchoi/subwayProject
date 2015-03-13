@@ -20,7 +20,6 @@ app.controller('registerCtrl', function($scope, registerFactory, $window, $locat
 	$scope.setLine = function() {
 			$scope.user.commute = train;
 			console.log('what here', train);
-		})
 	}
 
 	$scope.subwayClick = function() {
