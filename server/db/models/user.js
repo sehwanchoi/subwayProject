@@ -16,13 +16,16 @@ var schema = new mongoose.Schema({
         type: String,
         required: true
     },
-
     // added time property 
     time: {
         type: [String]
     },
     commute: {
+<<<<<<< HEAD
         type: [String]
+=======
+       type: [String]
+>>>>>>> origin
     }
 });
 
