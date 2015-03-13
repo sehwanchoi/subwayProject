@@ -4,12 +4,12 @@ app.directive('subbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
     return {
         restrict: 'E',
         scope: {},
-        templateUrl: 'js/common/directives/navbar.html',
+        templateUrl: 'js/common/directives/navbar/navbar.html',
         link: function (scope) {
 
             scope.items = [
                 { label: 'Home', state: 'home' },
-                { label: 'Signin', state: 'signin' },
+                { label: 'Login', state: 'login' },
                 { label: 'register', state: 'register' },
             ];
 
