@@ -1,32 +1,29 @@
-navbar {
+.navbar {
 
   display: block;
-  background: #a1a1a1;
+  width: 100%;
+  background-color: #9D7BA9;
+  padding-top: 2%;
 
-  fullstack-logo {
-    padding-top: 10px;
-    margin-right: 20px;
-    width: 30px;
-  }
 
   a {
     color: white;
     &:hover {
-      color: white;
+      color: none;
     }
   }
+
 
   .nav > li > a {
     cursor: pointer;
     &.active {
-      color: #f30046;
+      color: white;
     }
     &:hover {
       transition: color 0.2s;
     }
     &:focus {
-      color: #f30046;
-      background: transparent;
+      color: none;
     }
   }
 
