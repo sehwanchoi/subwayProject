@@ -58,7 +58,7 @@
 
 		<br><br>
 		
-		<span ng-show="ifSubway">Which line(s)?<br><button type="button" class="btn btn-primary btn-sm outline" ng-repeat="subway in subwayName" name="commute" ng-click="setLine()" ng-model="user.commute"> {{ subway.name }} </button></span><br><br>
+		<span ng-show="ifSubway">Which line?<br><button type="button" class="btn btn-primary btn-sm outline" ng-repeat="subway in subwayName" name="commute" ng-click="setLine(subway)" ng-model="user.commute"> {{ subway.name }} </button></span><br><br>
 
 		<button type="button" class="btn btn-primary btn-lg sharp" id="thirdb">next</button>
 		
@@ -80,9 +80,9 @@
 
 	<!-- <form ng-submit="addNewUser(user)"> -->
 	<div class="form-group">
-		(phonenumber,no dashes) <input type="text" ng-model="user.phoneNumber"><br>
-		(email) <input type="email" ng-model="user.email"><br>
-		(password) <input type="password" ng-model="user.password">
+		Yo' numba <input type="text" ng-model="user.phoneNumber"><br>
+		Yo' email <input type="email" ng-model="user.email"><br>
+		Yo' password <input type="password" ng-model="user.password">
 		</div>
 		<button type="submit" class="btn btn-primary btn-lg sharp">Finish</button>	
 	<!-- </form> -->

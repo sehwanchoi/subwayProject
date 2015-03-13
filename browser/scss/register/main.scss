@@ -12,13 +12,20 @@ section {
 	height: 100vh;
 }
 
+.row {
+	padding-left: 35%;
+}
+
+.col-sm-3 {
+	font-size: 20px;
+}
 
 .welcome {
 	background-color: #9D7BA9;
 	padding: 0;
 }
 
-.status {
+.currentStatus {
 	background-color: #9D7BA9;
 }
 
@@ -42,34 +49,22 @@ section {
 	background-color: #FF6666;
 }
 
+.logIn {
+	background-color: #72DFB0;
+}
+
 .content {
-	top: 40%;
-	padding: 20% 20%;
+	padding: 20%;
 	text-align:center;
 }
 
-.col-sm-3 {
-	padding-top: 5%;
-	padding-left: 8%;
+
+.content.message {
+	font-size: 32px;
 }
 
-.col-sm-8 {
-	top: 20%;
-}
-
-.content-home {
-	font-size: 20px;
-	text-align: center;
-}
-
-.content-home.status {
-	padding-right: 0;
-	text-align: center;
-}
-
-.content-home.message {
-	padding: 5%;
-	font-size: 28px;
+.content.status{
+	padding: 0;
 }
 
 table {

@@ -10,8 +10,24 @@ app.config(function ($stateProvider) {
 app.controller('homeCtrl', function($scope, mtaFactory) {
 
 	mtaFactory.getServiceInfo().then(function(status) {
-		$scope.allStatus = status;
+		$scope.groupOne = [];
+		var status1 = status.splice(0,5);
+		$scope.groupOne.push(status1);
+		$scope.groupOne = status1;
 	})
+
+	mtaFactory.getServiceInfo().then(function(status) {
+		$scope.groupTwo = [];
+		var status2 = status.splice(5,9);
+		$scope.groupTwo.push(status2);
+		$scope.groupTwo = status2;
+	})
+
+
+		
+
+
+
 
 
 })
