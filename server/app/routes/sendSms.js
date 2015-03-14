@@ -3,6 +3,7 @@ var authToken = 'f7ccf45537ca4c0e9a6f67e7c2eac50c';
 
 var router = require('express').Router();
 module.exports = router;
+
 //require the Twilio module and create a REST client 
 var client = require('twilio')(accountSid, authToken);
 
@@ -19,5 +20,6 @@ router.post('/', function(req, res) {
       console.log("message", message);
     }
   });
+
 
 })

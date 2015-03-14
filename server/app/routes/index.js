@@ -10,6 +10,7 @@ var parser = new xml2js.Parser();
 router.use('/register', require('./register'));
 router.use('/sms', require('./sendSms.js'));
 
+
 router.get('/mta', function(req, res) {
 
   var service = [];
@@ -49,7 +50,6 @@ router.get('/mta', function(req, res) {
     res.json(trains);
   })
 })
-
 
 router.use(function(req, res) {
   res.status(404).end();
