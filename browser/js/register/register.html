@@ -1,5 +1,5 @@
 <div class="register">
-	<form ng-submit="addNewUser(user)">
+	<form ng-submit="addNewUser(user)" name="registration">
 
 	<section class="name">
 		<div class="content">
@@ -112,8 +112,10 @@
 		Sign up and tell me where to send your alerts.
 
 	<!-- <form ng-submit="addNewUser(user)"> -->
-	<div class="form-group">
-		Yo' numba <input type="text" ng-model="user.phoneNumber"><br>
+	<div class="form-group" ng-class="{'has-error': registration.phone.$error.number}">
+		Yo' numba <input type="number" ng-model="user.phoneNumber" ng-minlength="10" ng-maxlength="10" name="phone" ng-required="true"><br>
+			<span class="help-block" ng-show="registration.phone.$error.required || registration.phone.$error.number">Valid phone number is required</span>
+	        <span class="help-block" ng-show="((registration.phone.$error.minlength || registration.phone.$error.maxlength) && registration.phone.$dirty) ">phone number should be 10 digits</span>
 		Yo' email <input type="email" ng-model="user.email"><br>
 		Yo' password <input type="password" ng-model="user.password">
 		</div>

@@ -1,0 +1,32 @@
+<section class="profileHome">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4 col-sm-offset-4">
+				<label>Email</label>
+				<div>
+					{{user.email}}
+				</div>
+				
+				<label>Train Status</label>
+				
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>Train</th>
+							<th>Current Status</th>
+						</tr>
+					</thead>
+					<tbody ng-repeat="train in userTrains ">
+						<tr>
+							<td>{{ train.name }}</td>
+							<td>{{ train.status }}</td>
+						</tr>
+					</tbody>
+				</table>
+				<button ng-click="sendMessage()">Send message?</button>
+			</div>
+		</div>
+	</div>
+	
+	
+</section>
