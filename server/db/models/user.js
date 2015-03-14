@@ -9,6 +9,9 @@ var schema = new mongoose.Schema({
     password: {
         type: String
     },
+    phoneNumber: {
+        type: String
+    },
     salt: {
         type: String
     },

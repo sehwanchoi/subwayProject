@@ -36,5 +36,3 @@ router.sendMessage = function(message) {
     }
   });
 }
-
-router.post('/:userid')
