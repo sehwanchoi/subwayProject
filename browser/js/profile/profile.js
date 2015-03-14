@@ -1,47 +1,61 @@
 'use strict';
-app.config(function ($stateProvider) {
-    $stateProvider.state('profile', {
-        url: '/profile',
-        templateUrl: 'js/profile/profile.html',
-        controller: 'profileCtrl'
-    });
+app.config(function($stateProvider) {
+  $stateProvider.state('profile', {
+    url: '/profile',
+    templateUrl: 'js/profile/profile.html',
+    controller: 'profileCtrl'
+  });
 });
 
-app.controller('profileCtrl', function($scope, AuthService, smsFactory, mtaFactory, $sce) {
+app.controller('profileCtrl', function($scope, AuthService, smsFactory, mtaFactory, $sce, $timeout) {
 
-	$scope.sendMessage = function() {
-		smsFactory.sendSMS().then(function(data) {
-			return data
-		})
-	}
+  $scope.sendMessage = function() {
+    smsFactory.sendSMS().then(function(data) {
+      return data
+    })
+  }
 
-	AuthService.getLoggedInUser().then(function(data) {
-		$scope.user = data;
+  AuthService.getLoggedInUser().then(function(data) {
+    $scope.user = data;
 
-		mtaFactory.getServiceInfo().then(function(data) {
-			$scope.userTrains = [];
-			var trainNames = _.pluck(data, "name");
-			console.log('pluck train names', trainNames);
-			console.log('user trains', $scope.user.commute);
-			$scope.user.commute.forEach(function(train) {
-				var userTrain = {};
-				var index = trainNames.indexOf(train);
-				if(index == -1) {
-					console.log('error: cannot find index of train');
-				} else {
-					userTrain.name = data[index].name;
-					userTrain.status = data[index].status;
-					// userTrain.text = $sce.trustAsHtml(data[index].text);
-					$scope.userTrains.push(userTrain);
-				}
+    mtaFactory.getServiceInfo().then(function(data) {
+      $scope.userTrains = [];
+      var trainNames = _.pluck(data, "name");
+      console.log('pluck train names', trainNames);
+      console.log('user trains', $scope.user.commute);
+      $scope.user.commute.forEach(function(train) {
+        var userTrain = {};
+        var index = trainNames.indexOf(train);
+        if (index == -1) {
+          console.log('error: cannot find index of train');
+        } else {
+          userTrain.name = data[index].name;
+          userTrain.status = data[index].status;
+          // userTrain.text = $sce.trustAsHtml(data[index].text);
+          $scope.userTrains.push(userTrain);
+        }
 
-			})
+      })
 
 
-			console.log('user train', $scope.userTrains);
+      console.log('user train', $scope.userTrains);
 
-		})
+    })
 
-	})
+  })
+
+  $scope.disaster = function() {
+    console.log("getting here");
+    $scope.userTrains.map(function(train) {
+      train.status = "DISASTER";
+    })
+
+    // console.log("usertrains", $scope.userTrains);
+
+    // $timeout(function() {
+    //   $scope.$apply();
+    // })
+
+  };
 
 });
