@@ -7,14 +7,17 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('homeCtrl', function($scope, mtaFactory, AuthService) {
-
+app.controller('homeCtrl', function($scope, $interval, mtaFactory, AuthService) {
+	
+	$interval(
 	mtaFactory.getServiceInfo().then(function(status) {
+		$scope.trainStatus = status;
 		$scope.groupOne = [];
 		var status1 = status.splice(0,5);
 		$scope.groupOne.push(status1);
 		$scope.groupOne = status1;
-	})
+		$sco
+	}), 10000);
 
 	mtaFactory.getServiceInfo().then(function(status) {
 		$scope.groupTwo = [];
@@ -24,11 +27,5 @@ app.controller('homeCtrl', function($scope, mtaFactory, AuthService) {
 	})
 
 	$scope.user = AuthService.isAuthenticated();
-
-		
-
-
-
-
 
 })

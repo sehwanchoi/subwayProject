@@ -12,8 +12,6 @@ var parser = new xml2js.Parser();
 
 module.exports = router;
 
-router.use('/register', require('./register.js'));
-
 // getting info from MTA
 
 router.get('/', function (req, res) {
@@ -39,10 +37,13 @@ router.get('/', function (req, res) {
                 service.push(serviceText);
                 
             })
-
+            
             res.send(service);
 
-          
+            // var train123 = {name: serviceName[0],
+            //  status: serviceStatus[0],
+            //  text: serviceText[0]}
+            //  console.log(train123);
         }
     })
 })

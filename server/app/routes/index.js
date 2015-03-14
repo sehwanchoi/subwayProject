@@ -8,6 +8,7 @@ var xml2js = require('xml2js');
 var parser = new xml2js.Parser();
 
 router.use('/register', require('./register'));
+router.use('/textmsg', require('./textmsg'));
 
 router.get('/mta', function (req, res) {
 
@@ -32,7 +33,6 @@ router.get('/mta', function (req, res) {
 				service.push(serviceName);
 				service.push(serviceStatus);
 				service.push(serviceText);
-				
 			})
 
 			for (var i=0; i < 10; i++) {
@@ -43,7 +43,6 @@ router.get('/mta', function (req, res) {
 				};
 				trains.push(trainObj);
 			}
-
 		}
 			res.json(trains);
 	})

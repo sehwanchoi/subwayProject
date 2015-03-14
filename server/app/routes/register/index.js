@@ -11,7 +11,7 @@ router.post('/', function(req, res, next) {
 
     var email = req.body.email;
     var password = req.body.password;
-    var phoneNumer = req.body.phoneNumber;
+    var phoneNumber = req.body.phoneNumber;
     var name = req.body.name;
     var commute = req.body.commute;
     console.log('COMMMUUUUTE', commute);
@@ -36,6 +36,7 @@ router.post('/', function(req, res, next) {
 				time: time
 			}, function (err, user){
 				// if (err) return next(err);
+
 				res.json(user);
 			});
 		}
