@@ -7,6 +7,7 @@ var xml2js = require('xml2js');
 var sendSms = require('./sendSms.js');
 
 
+
 var parser = new xml2js.Parser();
 
 router.use('/register', require('./register'));
@@ -22,7 +23,7 @@ router.get('/mta', function(req, res) {
 
   var previoustrains = [];
 
-  function getmtadata(next) {
+  function getMtaData(next) {
     var trains = [];
     // console.log("Getting inside ")
     request('http://web.mta.info/status/serviceStatus.txt', function(error, response, body) {
@@ -60,18 +61,18 @@ router.get('/mta', function(req, res) {
   }; // end of getmetadata;
 
   /**
-   * [checkaginstprevious description]
+   * [check previous status description]
    * @param  {[type]} previous [description]
    * @param  {[type]} new      [description]
    * @return {[either false, or if true, tell you which trains are different]}          [Boolean or array of train changes with new status]
    */
-  function checkaginstprevious(previous, newtrains) {
+  function checkPrevTrains(previous, newtrains) {
     //for loop previous and new value statuses
     //
     //
   }
 
-  getmtadata(function(err, trains) {
+  getMtaData(function(err, trains) {
     if (err) {
       console.error(err)
     } else {
@@ -83,15 +84,15 @@ router.get('/mta', function(req, res) {
 
 
   //setinterval that checks mta data every 5 seconds
-  var mtadatainterval = setInterval(function() {
-    getmtadata(function(err, trains) {
+  var mtaDataInterval = setInterval(function() {
+    getMtaData(function(err, trains) {
       if (err) {
         console.err(err)
       } else {
         console.log(">>>>>>>>>>>>>>>>>>>NEW REQUEST", Date.now());
 
         // check if you have previous trains, if you do, check if each of the status are the same
-        var status = checkaginstprevious(previoustrains, trains);
+        var status = checkPrevTrains(previoustrains, trains);
         if (!status) {
 
         } else {
