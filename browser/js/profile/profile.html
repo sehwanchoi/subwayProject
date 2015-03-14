@@ -2,8 +2,17 @@
 	
 	<div class="content">
 	{{user.email}}
+	{{commute}}
 	</div>
 
-	<span ng-click="sendMessage()">Send message?</span>
+
+	<div ng-repeat="train in userTrains">
+		<span ng-bind="train.name"></span>
+		<span ng-bind="train.status"></span>
+		<!-- <p ng-bind-html="train.text"></p> -->
+	</div>
+
+
+	<button ng-click="sendMessage()">Send message?</button>
 </section>
     
