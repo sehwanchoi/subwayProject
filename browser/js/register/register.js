@@ -35,7 +35,6 @@ app.controller('registerCtrl', function($scope, registerFactory, $window, $locat
 
 
 	// scroll down on click 
-	
 	$(function(){
 		$("#firstb").click(function() {
 		    $('html,body').animate({
