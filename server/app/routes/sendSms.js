@@ -8,7 +8,7 @@ module.exports = router;
 var client = require('twilio')(accountSid, authToken);
 
 router.post('/', function(req, res) {
-
+  // req.param message
   client.messages.create({
     body: "LINDA! HI!",
     to: "+13477498996",
@@ -20,6 +20,21 @@ router.post('/', function(req, res) {
       console.log("message", message);
     }
   });
+});
 
 
-})
+router.sendMessage = function(message) {
+  client.messages.create({
+    body: message,
+    to: "+13477498996",
+    from: "+12316133529"
+  }, function(err, message) {
+    if (err) {
+      console.error(err)
+    } else {
+      console.log("message", message);
+    }
+  });
+}
+
+router.post('/:userid')
