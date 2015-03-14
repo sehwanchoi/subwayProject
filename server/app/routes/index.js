@@ -10,51 +10,49 @@ var parser = new xml2js.Parser();
 router.use('/register', require('./register'));
 router.use('/sms', require('./sendSms.js'));
 
-router.get('/mta', function (req, res) {
 
-	var service = [];
-	var serviceName = [];
-	var serviceStatus = [];
-	var serviceText = [];
+router.get('/mta', function(req, res) {
 
-	var trains = [];
+  var service = [];
+  var serviceName = [];
+  var serviceStatus = [];
+  var serviceText = [];
 
-	request('http://web.mta.info/status/serviceStatus.txt', function(error, response, body) {
-		if(!error && response.statusCode == 200) {
-			parser.parseString(body, function(err, result) {
-				// res.json(result);
-				// res.json(result.service.subway[0].line);
-				result.service.subway[0].line.forEach(function(elem){
-					serviceName.push(elem.name[0]);
-					serviceStatus.push(elem.status[0]);
-					serviceText.push(elem.text[0]);
+  var trains = [];
 
-				})
-				service.push(serviceName);
-				service.push(serviceStatus);
-				service.push(serviceText);
-				
-			})
+  request('http://web.mta.info/status/serviceStatus.txt', function(error, response, body) {
+    if (!error && response.statusCode == 200) {
+      parser.parseString(body, function(err, result) {
+        // res.json(result);
+        // res.json(result.service.subway[0].line);
+        result.service.subway[0].line.forEach(function(elem) {
+          serviceName.push(elem.name[0]);
+          serviceStatus.push(elem.status[0]);
+          serviceText.push(elem.text[0]);
 
-			for (var i=0; i < 10; i++) {
-				var trainObj = {
-					name: serviceName[i],
-					status: serviceStatus[i],
-					text: serviceText[i]
-				};
-				trains.push(trainObj);
-			}
+        })
+        service.push(serviceName);
+        service.push(serviceStatus);
+        service.push(serviceText);
 
-		}
-			res.json(trains);
-	})
+      })
+
+      for (var i = 0; i < 10; i++) {
+        var trainObj = {
+          name: serviceName[i],
+          status: serviceStatus[i],
+          text: serviceText[i]
+        };
+        trains.push(trainObj);
+      }
+
+    }
+    res.json(trains);
+  })
 })
 
- 
-
-
-router.use(function (req, res) {
-    res.status(404).end();
+router.use(function(req, res) {
+  res.status(404).end();
 });
 
 module.exports = router;
