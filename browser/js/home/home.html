@@ -4,54 +4,55 @@
     <subwayLogo></subwayLogo>
 
     
-<section class="welcome">
-<div class="row">
-<div class="col-sm-3">
-	  	<div class="content status">	
-			<table class="table table-bordered table-hover">
-				<thead>
-					<tr>
-						<th>Train</th>
-						<th>Current Status</th>
-					</tr>
-				</thead>
-				<tbody ng-repeat="status in groupOne">
-					<tr>
-						<td>{{ status.name }}</td>
-						<td>{{ status.status }}</td>
-					</tr>
-				</tbody>
-			</table>
+	<section class="welcome">
+		<div class="row">
+			<div class="col-sm-3 col-sm-offset-3">
+		  	<div class="content status">	
+					<table class="table table-bordered table-hover">
+						<thead>
+							<tr>
+								<th>Train</th>
+								<th>Current Status</th>
+							</tr>
+						</thead>
+						<tbody ng-repeat="status in groupOne">
+							<tr>
+								<td>{{ status.name }}</td>
+								<td>{{ status.status }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-sm-3">
+			  	<div class="content status">	
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>Train</th>
+									<th>Current Status</th>
+								</tr>
+							</thead>
+							<tbody ng-repeat="status in groupTwo">
+								<tr>
+									<td>{{ status.name }}</td>
+									<td>{{ status.status }}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+			</div>
 		</div>
-	</div>
-
-	<div class="col-sm-3">
-	  	<div class="content status">	
-			<table class="table table-bordered table-hover">
-				<thead>
-					<tr>
-						<th>Train</th>
-						<th>Current Status</th>
-					</tr>
-				</thead>
-				<tbody ng-repeat="status in groupTwo">
-					<tr>
-						<td>{{ status.name }}</td>
-						<td>{{ status.status }}</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="row">
+			<div class="col-sm-offset-5 col-sm-5">
+				<button type="button" class="btn btn-primary btn-lg sharp" ui-sref="profile"> Go To Your Profile</button>
+			</div>
 		</div>
-	</div>
-</div>
-
-
-	<div class="content message" ng-hide="user">
-		hello! welcome to DELAYD, where you get text updates regarding service changes and alerts on your nyc commute!<br>
-		<button type="button" ui-sref="register" class="btn btn-primary btn-lg sharp">Get Started</button>
-	</div>
-	</div>
-</section>
+		<div class="content message" ng-hide="user">
+			hello! welcome to DELAYD, where you get text updates regarding service changes and alerts on your nyc commute!<br>
+			<button type="button" ui-sref="register" class="btn btn-primary btn-lg sharp">Get Started</button>
+		</div>
+	</section>
 
 
 </div>
