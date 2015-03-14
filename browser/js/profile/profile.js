@@ -34,10 +34,7 @@ app.controller('profileCtrl', function($scope, AuthService, smsFactory, mtaFacto
 					// userTrain.text = $sce.trustAsHtml(data[index].text);
 					$scope.userTrains.push(userTrain);
 				}
-
 			})
-
-
 			console.log('user train', $scope.userTrains);
 
 		})
