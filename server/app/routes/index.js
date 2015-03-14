@@ -65,7 +65,7 @@ router.get('/mta', function(req, res) {
    * @param  {[type]} new      [description]
    * @return {[either false, or if true, tell you which trains are different]}          [Boolean or array of train changes with new status]
    */
-  function checkaginstprevious(previous, new) {
+  function checkaginstprevious(previous, newtrains) {
     //for loop previous and new value statuses
     //
     //
