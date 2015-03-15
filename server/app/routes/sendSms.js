@@ -3,7 +3,7 @@ var authToken = 'f7ccf45537ca4c0e9a6f67e7c2eac50c';
 
 var router = require('express').Router();
 
-var socket = require('../../io')();
+// var socket = require('../../io')();
 
 module.exports = router;
 
@@ -13,7 +13,7 @@ var client = require('twilio')(accountSid, authToken);
 router.post('/', function(req, res) {
 
   client.messages.create({
-    body: "Hi " + req.body.data.name + ". Your train probably sucks too",
+    body: "Hi " + req.body.data.name + ". The " + req.body.train.name + " train totally sucks. Its current status is: " + req.body.train.status,
     to: req.body.data.phoneNumber,
     from: "+12316133529"
   }, function(err, message) {
@@ -21,7 +21,6 @@ router.post('/', function(req, res) {
       console.error(err)
     } else {
       console.log("message", message);
-      socket.on('disasterStatus', message);
       }
     });
 })

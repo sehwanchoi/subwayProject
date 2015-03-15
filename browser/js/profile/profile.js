@@ -7,7 +7,7 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $sce, $timeout, socketFactory) {
+app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $sce, $timeout) {
 
 
   AuthService.getLoggedInUser().then(function(data) {
@@ -40,10 +40,12 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
 
   $scope.sendMessage = function() {
     $scope.userTrains.forEach(function(train) {
-      console.log('TRAIN', train);
-      AuthService.getLoggedInUser().then(function(data) {
-        $http.post('/api/sms', {data: data, train: train});
-      })
+      console.log('TRAIN', train.status);
+      if(train.status !== "GOOD SERVICE") {
+          AuthService.getLoggedInUser().then(function(data) {
+            $http.post('/api/sms', {data: data, train: train});
+          })
+      }
     })
   }
 
@@ -51,10 +53,10 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
       console.log("getting here");
         console.log('socket emitted?');
         $scope.userTrains.map(function(train) {
-          train.status = "DISASTER";
+            train.status = "DISASTER";
         })
-      
-    })
+    }
+
 
     // console.log("usertrains", $scope.userTrains);
 
@@ -62,6 +64,5 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
     //   $scope.$apply();
     // })
 
-  };
 
 });

@@ -6,7 +6,7 @@ var request = require('request');
 var xml2js = require('xml2js');
 var sendSms = require('./sendSms.js');
 
-var socket = require('../../io')();
+// var socket = require('../../io')();
 
 var parser = new xml2js.Parser();
 
