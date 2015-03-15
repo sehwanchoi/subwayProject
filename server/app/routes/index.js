@@ -6,7 +6,7 @@ var request = require('request');
 var xml2js = require('xml2js');
 var sendSms = require('./sendSms.js');
 
-
+// var socket = require('../../io')();
 
 var parser = new xml2js.Parser();
 
@@ -83,32 +83,32 @@ router.get('/mta', function(req, res) {
 
 
 
-  //setinterval that checks mta data every 5 seconds
-  var mtaDataInterval = setInterval(function() {
-    getMtaData(function(err, trains) {
-      if (err) {
-        console.err(err)
-      } else {
-        console.log(">>>>>>>>>>>>>>>>>>>NEW REQUEST", Date.now());
+  // //setinterval that checks mta data every 5 seconds
+  // var mtaDataInterval = setInterval(function() {
+  //   getMtaData(function(err, trains) {
+  //     if (err) {
+  //       console.err(err)
+  //     } else {
+  //       console.log(">>>>>>>>>>>>>>>>>>>NEW REQUEST", Date.now());
 
-        // check if you have previous trains, if you do, check if each of the status are the same
-        var status = checkPrevTrains(previoustrains, trains);
-        if (!status) {
+  //       // check if you have previous trains, if you do, check if each of the status are the same
+  //       var status = checkPrevTrains(previoustrains, trains);
+  //       if (!status) {
 
-        } else {
-          //go implement socket.io logic to update view in the front end
+  //       } else {
+  //         //go implement socket.io logic to update view in the front end
 
 
-          //check database to see which users use this line
+  //         //check database to see which users use this line
 
-          //get their numbers and use twilio to send message, ONLY IF not good service
-        }
-        trains.forEach(function(train) {
-          console.log("name: ", train.name, ", status : ", train.status);
-        })
-      }
-    })
-  }, 5000)
+  //         //get their numbers and use twilio to send message, ONLY IF not good service
+  //       }
+  //       trains.forEach(function(train) {
+  //         console.log("name: ", train.name, ", status : ", train.status);
+  //       })
+  //     }
+  //   })
+  // }, 5000)
 
 
   //

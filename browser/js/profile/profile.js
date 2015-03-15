@@ -7,13 +7,8 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('profileCtrl', function($scope, AuthService, smsFactory, mtaFactory, $sce, $timeout) {
+app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $sce, $timeout) {
 
-  $scope.sendMessage = function() {
-    smsFactory.sendSMS().then(function(data) {
-      return data
-    })
-  }
 
   AuthService.getLoggedInUser().then(function(data) {
     $scope.user = data;
@@ -43,11 +38,27 @@ app.controller('profileCtrl', function($scope, AuthService, smsFactory, mtaFacto
 
   })
 
+  $scope.sendMessage = function() {
+    $scope.userTrains.forEach(function(train) {
+      console.log('TRAIN', train.status);
+      if(train.status !== "GOOD SERVICE") {
+          AuthService.getLoggedInUser().then(function(data) {
+            $http.post('/api/sms', {data: data, train: train});
+          })
+        } else {
+            console.log('The trains are in good service.')
+          }
+      })
+  }
+
   $scope.disaster = function() {
-    console.log("getting here");
-    $scope.userTrains.map(function(train) {
-      train.status = "DISASTER";
-    })
+      console.log("getting here");
+        console.log('socket emitted?');
+        $scope.userTrains.map(function(train) {
+            train.status = "DISASTER";
+        })
+    }
+
 
     // console.log("usertrains", $scope.userTrains);
 
@@ -55,6 +66,5 @@ app.controller('profileCtrl', function($scope, AuthService, smsFactory, mtaFacto
     //   $scope.$apply();
     // })
 
-  };
 
 });
