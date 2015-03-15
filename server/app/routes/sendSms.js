@@ -13,8 +13,8 @@ var client = require('twilio')(accountSid, authToken);
 router.post('/', function(req, res) {
 
   client.messages.create({
-    body: "Hi " + req.body.name + ". Your train probably sucks too",
-    to: req.body.phoneNumber,
+    body: "Hi " + req.body.data.name + ". Your train probably sucks too",
+    to: req.body.data.phoneNumber,
     from: "+12316133529"
   }, function(err, message) {
     if (err) {
