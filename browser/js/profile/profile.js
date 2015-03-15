@@ -57,6 +57,7 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
         $scope.userTrains.map(function(train) {
             train.status = "DISASTER";
         })
+        $scope.sendMessage();
     }
 
 
