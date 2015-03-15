@@ -65,7 +65,7 @@ app.controller('registerCtrl', function($scope, registerFactory, $window, $locat
 		registerFactory.createNewUser(newUser).then(function(data){
 			console.log("hello in controler: ", data)
 			if(data !== null)
-			$window.location.href = '/';
+			$window.location.href = '/login';
 		});
 	};
 
