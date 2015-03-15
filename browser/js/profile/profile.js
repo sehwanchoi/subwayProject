@@ -45,8 +45,10 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
           AuthService.getLoggedInUser().then(function(data) {
             $http.post('/api/sms', {data: data, train: train});
           })
-      }
-    })
+        } else {
+            console.log('The trains are in good service.')
+          }
+      })
   }
 
   $scope.disaster = function() {
