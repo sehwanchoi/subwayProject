@@ -12,4 +12,5 @@ module.exports = function (server) {
         // Now have access to socket, wowzers!
     });
 
+    return io;
 };

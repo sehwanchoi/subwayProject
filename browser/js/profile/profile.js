@@ -7,13 +7,8 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('profileCtrl', function($scope, AuthService, smsFactory, mtaFactory, $sce, $timeout) {
+app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $sce, $timeout) {
 
-  $scope.sendMessage = function() {
-    smsFactory.sendSMS().then(function(data) {
-      return data
-    })
-  }
 
   AuthService.getLoggedInUser().then(function(data) {
     $scope.user = data;
@@ -42,6 +37,15 @@ app.controller('profileCtrl', function($scope, AuthService, smsFactory, mtaFacto
     })
 
   })
+
+  $scope.sendMessage = function() {
+    $scope.userTrains.forEach(function(train) {
+      console.log('TRAIN', train);
+      AuthService.getLoggedInUser().then(function(data) {
+        $http.post('/api/sms', {data: data, train: train});
+      })
+    })
+  }
 
   $scope.disaster = function() {
     console.log("getting here");

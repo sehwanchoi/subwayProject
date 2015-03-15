@@ -11,7 +11,7 @@ router.post('/', function(req, res, next) {
 
     var email = req.body.email;
     var password = req.body.password;
-    var phoneNumer = req.body.phoneNumber;
+    var phoneNumber = req.body.phoneNumber;
     var name = req.body.name;
     var commute = req.body.commute;
     console.log('COMMMUUUUTE', commute);
@@ -30,7 +30,7 @@ router.post('/', function(req, res, next) {
 			mongoose.model('User').create({
 				email: email,
 				password: password,
-				phoneNumer: phoneNumer,
+				phoneNumber: phoneNumber,
 				name: name,
 				commute: commute,
 				time: time
