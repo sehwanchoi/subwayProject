@@ -28,10 +28,6 @@ app.controller('homeCtrl', function($scope, $timeout, mtaFactory, AuthService) {
 		})	
 
 
-	$timeout(function() {
-		mtaFactory.getServiceInfo().reload();
-	}, 10000);
-
 	
 
 })

@@ -7,7 +7,7 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $sce, $timeout) {
+app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $sce, $timeout, socket) {
 
 
   AuthService.getLoggedInUser().then(function(data) {
@@ -52,13 +52,18 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
   }
 
   $scope.disaster = function() {
-      console.log("getting here");
-        console.log('socket emitted?');
         $scope.userTrains.map(function(train) {
             train.status = "DISASTER";
         })
         $scope.sendMessage();
     }
+
+    socket.emit('disasterStatus', function() {
+      console.log('getting here?');
+      $scope.userTrains.map(function(train) {
+        train.status = "DISASTER";
+      })
+    })
 
 
     // console.log("usertrains", $scope.userTrains);

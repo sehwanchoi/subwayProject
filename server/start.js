@@ -28,4 +28,4 @@ startDb.then(createApplication).then(startServer).catch(function (err) {
     console.error('Initialization error:', chalk.red(err.message));
 });
 
-
+module.exports = server;

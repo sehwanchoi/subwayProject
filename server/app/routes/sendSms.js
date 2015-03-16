@@ -1,9 +1,11 @@
 var accountSid = 'AC9500ed900b16752a91f1a5e7be08aa7e';
 var authToken = 'f7ccf45537ca4c0e9a6f67e7c2eac50c';
+var socketio = require('../../start.js').server;
 
 var router = require('express').Router();
 
-// var socket = require('../../io')();
+var io = require('../../io')(socketio);
+
 
 module.exports = router;
 
