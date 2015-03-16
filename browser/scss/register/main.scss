@@ -42,7 +42,7 @@ er {
 	font-size: 20px;
 }
 
-.welcome {
+.welcomeHome {
 	background-color: #9D7BA9;
 	padding: 0;
 }
@@ -93,19 +93,19 @@ er {
 
 .content.status{
 	padding: 0;
+	display: table;
 }
 
-table {
+.table {
+	display: table-cell;
+	vertical-align: right;
 	width: auto !important;
 }
 
-table th {
+.table.th {
 	width: auto !important;
 }
 
-table .table-hover {
-	background-color: rgba(0,0,0,0.5);
-}
 
 input {
 	width: 300px;
@@ -133,6 +133,7 @@ input {
 
 .btn {
     padding: 12px 24px;
+    margin: 5px;
     border: 0 none;
     font-weight: 700;
     letter-spacing: 1px;

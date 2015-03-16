@@ -38,7 +38,7 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
 
   })
 
-  $scope.sendMessage = function() {
+ var sendMessage = function() {
     $scope.userTrains.forEach(function(train) {
       console.log('TRAIN', train.status);
       if (train.status !== "GOOD SERVICE") {
@@ -61,24 +61,29 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
     })
 
     var modalInstance = $modal.open({
-      templateUrl: 'modal.html',
-      controller: 'profileCtrl'
+      templateUrl: '/js/profile/disasterModal.html',
+      controller: function($scope, $modalInstance) {
+        console.log('disaster modal is happening')
+          $scope.ok = function() {
+            $modalInstance.close('ok');
+          };
+        }
     });
 
-    $scope.sendMessage();
+    modalInstance.result.then(function() {
+      return sendMessage();
+    });
+    
   }
 
-  $scope.cancel = function() {
-    $modalInstance.dismiss('cancel');
-  };
 
-  socket.emit('disasterStatus', function() {
-    console.log('getting here?');
-    $scope.userTrains.map(function(train) {
-      train.status = "DISASTER";
-    })
+  // socket.emit('disasterStatus', function() {
+  //   console.log('getting here?');
+  //   $scope.userTrains.map(function(train) {
+  //     train.status = "DISASTER";
+  //   })
 
-  })
+  // })
 
 
 });

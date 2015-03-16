@@ -7,7 +7,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('homeCtrl', function($scope, $timeout, mtaFactory, AuthService) {
+app.controller('homeCtrl', function($scope, $rootScope, $timeout, mtaFactory, AuthService, AUTH_EVENTS, $state) {
 
 
 		$scope.serviceStatus = 
@@ -26,6 +26,14 @@ app.controller('homeCtrl', function($scope, $timeout, mtaFactory, AuthService) {
 			$scope.groupTwo.push(status2);
 			$scope.groupTwo = status2;
 		})	
+
+		var setUser = function () {
+                AuthService.getLoggedInUser().then(function (user) {
+                    scope.user = user;
+                });
+            };
+
+      	$rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
 
 
 	
