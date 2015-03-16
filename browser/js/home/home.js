@@ -7,31 +7,33 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('homeCtrl', function($scope, $timeout, mtaFactory, AuthService) {
+app.controller('homeCtrl', function($scope, $rootScope, $timeout, mtaFactory, AuthService, AUTH_EVENTS, $state) {
 
 
-		$scope.serviceStatus = 
-			mtaFactory.getServiceInfo().then(function(status) {
-			$scope.groupOne = [];
-			var status1 = status.splice(0,5);
-				$scope.groupOne.push(status1);
-				$scope.groupOne = status1;
-		})
-
-
+		// changed splice to slice 
+		// combined groupOne and groupTwo into one function so that we don't call getService function twice 
 
 		mtaFactory.getServiceInfo().then(function(status) {
+
+			$scope.groupOne = [];
 			$scope.groupTwo = [];
-			var status2 = status.splice(5,9);
+
+			var status1 = status.slice(0,5);
+				$scope.groupOne.push(status1);
+				$scope.groupOne = status1;
+			
+
+			var status2 = status.slice(5,10);
 			$scope.groupTwo.push(status2);
 			$scope.groupTwo = status2;
-		})	
+		})
 
+		var setUser = function(){
+			AuthService.getLoggedInUser().then(function(user){
+				scope.user = user;
+			});
+		};
 
-	$timeout(function() {
-		mtaFactory.getServiceInfo().reload();
-	}, 10000);
-
-	
+		$rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
 
 })
