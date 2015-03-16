@@ -23,17 +23,14 @@ er {
 	text-align: center;
 }
 
-.col-sm-3 {
-	font-size: 20px;
-}
 
 .welcomeHome {
-	background-color: #9D7BA9;
+	background-color: #78F4F1;
 	padding: 0;
 }
 
 .profileHome {
-	background-color: #197EC1;
+	background-color: #FF9677;
 }
 
 .currentStatus {
@@ -83,9 +80,10 @@ er {
 
 
 .table {
-	display: table-cell;
-	vertical-align: right;
-	width: auto !important;
+	display: inline-block;
+	position: center;
+	max-width: 250px !important;
+	margin: 10px;
 }
 
 
