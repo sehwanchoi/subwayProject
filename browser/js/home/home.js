@@ -29,13 +29,13 @@ app.controller('homeCtrl', function($scope, $rootScope, $timeout, mtaFactory, Au
 			$scope.groupTwo = status2;
 		})
 
-
+		$scope.user = null;
 
 		
 		
 		var setUser = function () {
                 AuthService.getLoggedInUser().then(function (user) {
-                    scope.user = user;
+                    $scope.user = user;
                 });
             };
 
