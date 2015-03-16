@@ -3,10 +3,10 @@
 
 	<section class="name">
 		<div class="content">
-		what is your name?<br>
+		What is your name?<br>
 		<input type="text" ng-model="user.name"> <br><br>
 		<div class="first">
-		<button type="button" class="btn btn-primary btn-lg" id="firstb">next</button>
+		<button type="button" class="btn btn-primary btn-lg sharp" id="firstb">next</button>
 		</div>
 
 		</div>
@@ -14,12 +14,13 @@
 
 	<section class="wakeUpTime">
 		<div class="content" id="second">
-		hi {{ user.name }}, what time do you wake up?<br><br>
+		Hi {{ user.name }}, I'm nosy. What time do you wake up?<br><br>
 
-		<div class="time">
 			<!-- <div class="select-div"> -->
-				<select name="time" ng-click="setTime(time)" ng-model="user.time">
-					<option value="1">1</option>
+			<div class="form-inline">
+			<label>HOUR</label>
+				<select class="form-control" ng-click="setTime(time)" ng-model="user.time">
+					<option value="1"></option>
 					<option value="2">2</option>
 					<option value="3">3</option>
 					<option value="4">4</option>
@@ -30,18 +31,21 @@
 					<option value="9">9</option>
 					<option value="10">10</option>
 					<option value="11">11</option>
+					<option value="11">12</option>
 				</select>
-		<!-- 	</div> -->
-			<er>:</er>	
+		<!-- 	</div> --	
 		<!-- 	<div class="select-div"> -->
-				<select name="minute" ng-model="user.minute">
+		<er>:</er>
+		<label>MIN</label>
+				<select class="form-control inline" name="minute" ng-model="user.minute">
 					<option value="0">0</option>
 					<option value="30">30</option>
 				</select>
+				</div>
+				<h2>AM</h2>
 		<!-- 	</div> -->
 
-				<h2>AM</h2>
-		</div>
+
 		<br><br>
 <!-- 
 		  Select a time:
@@ -70,14 +74,15 @@
 
 	<section class="goingHomeTime">
 		<div class="content" id="fourth">
-		when do you leave work? 
+		When do you leave work? 
 		<br><br>
 
 
 		<div class="time">
-			<!-- <div class="select-div"> -->
-				<select name="time" ng-click="setTime(time)" ng-model="user.time">
-					<option value="1">1</option>
+			<div class="form-inline">
+			<label>HOUR</label>
+				<select class="form-control" ng-click="setTime(time)" ng-model="user.time">
+					<option value="1"></option>
 					<option value="2">2</option>
 					<option value="3">3</option>
 					<option value="4">4</option>
@@ -88,14 +93,17 @@
 					<option value="9">9</option>
 					<option value="10">10</option>
 					<option value="11">11</option>
+					<option value="11">12</option>
 				</select>
-		<!-- 	</div> -->
-			<er>:</er>	
+		<!-- 	</div> --	
 		<!-- 	<div class="select-div"> -->
-				<select name="minute" ng-model="user.minute">
+		<er>:</er>
+		<label>MIN</label>
+				<select class="form-control inline" name="minute" ng-model="user.minute">
 					<option value="0">0</option>
 					<option value="30">30</option>
 				</select>
+				</div>
 		<!-- 	</div> -->
 
 				<h2>PM</h2>
@@ -108,7 +116,7 @@
 
 	<section class="signUp">
 		<div class="content" id="fifth">
-		Almost there!
+		Almost there! I just really want to get to know you.
 		Sign up and tell me where to send your alerts.
 
 	<!-- <form ng-submit="addNewUser(user)"> -->
