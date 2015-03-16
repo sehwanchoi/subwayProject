@@ -1,10 +1,10 @@
 var accountSid = 'AC9500ed900b16752a91f1a5e7be08aa7e';
 var authToken = 'f7ccf45537ca4c0e9a6f67e7c2eac50c';
-var socketio = require('../../start.js').server;
+// var socketio = require('../../start.js').server;
 
 var router = require('express').Router();
 
-var io = require('../../io')(socketio);
+// var io = require('../../io')(socketio);
 
 
 module.exports = router;
@@ -25,8 +25,8 @@ router.post('/', function(req, res) {
       console.error(err)
     } else {
       console.log("message", message);
-      }
-    });
+    }
+  });
 })
 
 // router.sendMessage = function(message) {
@@ -42,3 +42,18 @@ router.post('/', function(req, res) {
 //     }
 //   });
 // }
+// 
+// io.on('connection', function(socket) {
+//   console.log('a user connected');
+//   socket.on('disconnect', function() {
+//     console.log('user disconnected');
+//   });
+//   socket.on('chat message', function(msg) {
+//     console.log('message: ' + msg);
+//     io.emit('chat message', msg);
+//   });
+
+//   socket.on('disasterStatus', function() {
+//     console.log('anything?')
+//   });
+// });

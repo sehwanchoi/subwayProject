@@ -41,36 +41,39 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
   $scope.sendMessage = function() {
     $scope.userTrains.forEach(function(train) {
       console.log('TRAIN', train.status);
-      if(train.status !== "GOOD SERVICE") {
-          AuthService.getLoggedInUser().then(function(data) {
-            $http.post('/api/sms', {data: data, train: train});
-          })
-        } else {
-            console.log('The trains are in good service.')
-          }
-      })
+      if (train.status !== "GOOD SERVICE") {
+        AuthService.getLoggedInUser().then(function(data) {
+          $http.post('/api/sms', {
+            data: data,
+            train: train
+          });
+        })
+      } else {
+        console.log('The trains are in good service.')
+      }
+    })
   }
 
   $scope.disaster = function() {
-        $scope.userTrains.map(function(train) {
-            train.status = "DISASTER";
-        })
-        $scope.sendMessage();
-    }
-
-    socket.emit('disasterStatus', function() {
-      console.log('getting here?');
-      $scope.userTrains.map(function(train) {
-        train.status = "DISASTER";
-      })
+    $scope.userTrains.map(function(train) {
+      train.status = "DISASTER";
     })
+    $scope.sendMessage();
+  }
+
+  socket.emit('disasterStatus', function() {
+    console.log('getting here?');
+    $scope.userTrains.map(function(train) {
+      train.status = "DISASTER";
+    })
+  })
 
 
-    // console.log("usertrains", $scope.userTrains);
+  // console.log("usertrains", $scope.userTrains);
 
-    // $timeout(function() {
-    //   $scope.$apply();
-    // })
+  // $timeout(function() {
+  //   $scope.$apply();
+  // })
 
 
 });
