@@ -18,6 +18,7 @@ app.controller('homeCtrl', function($scope, $rootScope, $timeout, mtaFactory, Au
 			$scope.groupOne = [];
 			$scope.groupTwo = [];
 
+
 			var status1 = status.slice(0,5);
 				$scope.groupOne.push(status1);
 				$scope.groupOne = status1;
@@ -28,11 +29,18 @@ app.controller('homeCtrl', function($scope, $rootScope, $timeout, mtaFactory, Au
 			$scope.groupTwo = status2;
 		})
 
-		var setUser = function(){
-			AuthService.getLoggedInUser().then(function(user){
-				scope.user = user;
-			});
-		};
+
+
 		
-		$rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
+		
+		var setUser = function () {
+                AuthService.getLoggedInUser().then(function (user) {
+                    scope.user = user;
+                });
+            };
+
+      	$rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
+
+
+	
 })

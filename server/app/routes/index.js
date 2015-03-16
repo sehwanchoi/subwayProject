@@ -33,7 +33,7 @@ router.get('/mta', function(req, res) {
     // console.log("Getting inside ")
     request('http://web.mta.info/status/serviceStatus.txt', function(error, response, body) {
       if (error) {
-        next(err);
+        next(error);
       } else if (response.statusCode != 200) {
         next("response code not 200 " + response.statusCode)
       } else {

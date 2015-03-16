@@ -7,7 +7,7 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $sce, $timeout) {
+app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $sce, $timeout, socket, $modal) {
 
 
   AuthService.getLoggedInUser().then(function(data) {
@@ -38,34 +38,52 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
     })
   })
 
-  $scope.sendMessage = function() {
+ var sendMessage = function() {
     $scope.userTrains.forEach(function(train) {
       console.log('TRAIN', train.status);
-      if(train.status !== "GOOD SERVICE") {
-          AuthService.getLoggedInUser().then(function(data) {
-            $http.post('/api/sms', {data: data, train: train});
-          })
-        } else {
-            console.log('The trains are in good service.')
-          }
-      })
+      if (train.status !== "GOOD SERVICE") {
+        AuthService.getLoggedInUser().then(function(data) {
+          $http.post('/api/sms', {
+            data: data,
+            train: train
+          });
+        })
+      } else {
+        console.log('The trains are in good service.')
+      }
+    })
   }
 
   $scope.disaster = function() {
-      console.log("getting here");
-        console.log('socket emitted?');
-        $scope.userTrains.map(function(train) {
-            train.status = "DISASTER";
-        })
-        $scope.sendMessage();
-    }
+
+    $scope.userTrains.map(function(train) {
+      train.status = "DISASTER";
+    })
+
+    var modalInstance = $modal.open({
+      templateUrl: '/js/profile/disasterModal.html',
+      controller: function($scope, $modalInstance) {
+        console.log('disaster modal is happening')
+          $scope.ok = function() {
+            $modalInstance.close('ok');
+          };
+        }
+    });
+
+    modalInstance.result.then(function() {
+      return sendMessage();
+    });
+    
+  }
 
 
-    // console.log("usertrains", $scope.userTrains);
+  // socket.emit('disasterStatus', function() {
+  //   console.log('getting here?');
+  //   $scope.userTrains.map(function(train) {
+  //     train.status = "DISASTER";
+  //   })
 
-    // $timeout(function() {
-    //   $scope.$apply();
-    // })
+  // })
 
 
 });

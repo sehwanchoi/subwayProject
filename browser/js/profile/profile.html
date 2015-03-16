@@ -1,13 +1,17 @@
+
 <section class="profileHome">
+<subbar></subbar>
 	<div class="container-fluid">
+		<div class="row">&nbsp;</div>
 		<div class="row">
 			<div class="col-sm-4 col-sm-offset-4">
+				<h1>Sup, {{user.name}}</h1>
 				<label>Email</label>
 				<div>
 					{{user.email}}
 				</div>
 				
-				<label>Train Status</label>
+				<label>Your Trains</label>
 				
 				<table class="table table-bordered table-hover">
 					<thead>
@@ -22,8 +26,7 @@
 							<td>{{ train.status }}</td>
 						</tr>
 					</tbody>
-				</table>
-				<button ng-click="sendMessage()">Send message?</button>
+				</table><br>
 				<button class="btn-danger" ng-click="disaster()"> DISASTER</button>
 			</div>
 		</div>
@@ -31,3 +34,6 @@
 	
 	
 </section>
+
+
+

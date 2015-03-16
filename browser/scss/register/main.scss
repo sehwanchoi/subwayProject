@@ -5,21 +5,6 @@ body {
 	font-size: 28px;
 }
 
-select{
-    background:transparent;
-    text-align: center;
-    width: 50px;
-    padding: 2px;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size: 30px;
-    font-weight:600;
-    color:#000000;
-    line-height: 1;
-    border: 0;
-    border-radius: 0;
-    height: 35px;
-    -webkit-appearance: none;
-}
 
 
 section {
@@ -96,19 +81,22 @@ er {
 	display: table;
 }
 
-table {
+
+.table {
 	display: table-cell;
 	vertical-align: right;
 	width: auto !important;
 }
 
+
 .table .th {
 	width: auto !important;
 }
 
-/*table .table-hover {
+table .table-hover {
 	background-color: rgba(0,0,0,0.5);
-}*/
+}
+
 
 input {
 	width: 300px;
