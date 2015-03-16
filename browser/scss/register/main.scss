@@ -81,14 +81,20 @@ er {
 	display: table;
 }
 
+
 .table {
 	display: table-cell;
 	vertical-align: right;
 	width: auto !important;
 }
 
-.table.th {
+
+.table .th {
 	width: auto !important;
+}
+
+table .table-hover {
+	background-color: rgba(0,0,0,0.5);
 }
 
 
