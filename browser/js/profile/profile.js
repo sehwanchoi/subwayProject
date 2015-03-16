@@ -18,24 +18,24 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
       var trainNames = _.pluck(data, "name");
       console.log('pluck train names', trainNames);
       console.log('user trains', $scope.user.commute);
+
       $scope.user.commute.forEach(function(train) {
         var userTrain = {};
         var index = trainNames.indexOf(train);
         if (index == -1) {
           console.log('error: cannot find index of train');
         } else {
+          
           userTrain.name = data[index].name;
           userTrain.status = data[index].status;
           // userTrain.text = $sce.trustAsHtml(data[index].text);
           $scope.userTrains.push(userTrain);
         }
-
       })
 
       console.log('user train', $scope.userTrains);
 
     })
-
   })
 
   $scope.sendMessage = function() {
