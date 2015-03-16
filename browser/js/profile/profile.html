@@ -4,14 +4,17 @@
 	<div class="container-fluid">
 		<div class="row">&nbsp;</div>
 		<div class="row">
-			<div class="col-sm-4 col-sm-offset-4">
+			<div class="col-sm-2"></div>
+			<div class="col-sm-3">
 				<h1>Sup, {{user.name}}</h1>
-				<label>Email</label>
-				<div>
-					{{user.email}}
-				</div>
+				<img src="http://media.giphy.com/media/N34mhGic5843C/giphy.gif">
+				<label>Email: </label>
 				
-				<label>Your Trains</label>
+					{{user.email}}
+			</div>
+				
+			<div class="col-sm-3 col-sm-offset-1">
+				<h1>Your Trains</h1>
 				
 				<table class="table table-bordered table-hover">
 					<thead>
@@ -28,9 +31,12 @@
 					</tbody>
 				</table><br>
 				<button class="btn-danger" ng-click="disaster()"> DISASTER</button>
+				
+			</div>
+			
 			</div>
 		</div>
-	</div>
+	
 	
 	
 </section>
