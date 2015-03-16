@@ -7,7 +7,7 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $sce, $timeout, socket, $modal, $modalInstance) {
+app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $sce, $timeout, socket, $modal) {
 
 
   AuthService.getLoggedInUser().then(function(data) {
@@ -41,47 +41,44 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
   $scope.sendMessage = function() {
     $scope.userTrains.forEach(function(train) {
       console.log('TRAIN', train.status);
-      if(train.status !== "GOOD SERVICE") {
-          AuthService.getLoggedInUser().then(function(data) {
-            $http.post('/api/sms', {data: data, train: train});
-          })
-        } else {
-            console.log('The trains are in good service.')
-          }
-      })
+      if (train.status !== "GOOD SERVICE") {
+        AuthService.getLoggedInUser().then(function(data) {
+          $http.post('/api/sms', {
+            data: data,
+            train: train
+          });
+        })
+      } else {
+        console.log('The trains are in good service.')
+      }
+    })
   }
 
   $scope.disaster = function() {
-      $scope.userTrains.map(function(train) {
-          train.status = "DISASTER";
-      })
-      
-      var modalInstance = $modal.open({
-        templateUrl: 'modal.html',
-        controller: 'profileCtrl'
-      });
 
-        $scope.sendMessage();
-    }
-
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-
-    socket.emit('disasterStatus', function() {
-      console.log('getting here?');
-      $scope.userTrains.map(function(train) {
-        train.status = "DISASTER";
-      })
+    $scope.userTrains.map(function(train) {
+      train.status = "DISASTER";
     })
 
+    var modalInstance = $modal.open({
+      templateUrl: 'modal.html',
+      controller: 'profileCtrl'
+    });
 
+    $scope.sendMessage();
+  }
 
-    // console.log("usertrains", $scope.userTrains);
+  $scope.cancel = function() {
+    $modalInstance.dismiss('cancel');
+  };
 
-    // $timeout(function() {
-    //   $scope.$apply();
-    // })
+  socket.emit('disasterStatus', function() {
+    console.log('getting here?');
+    $scope.userTrains.map(function(train) {
+      train.status = "DISASTER";
+    })
+
+  })
 
 
 });
