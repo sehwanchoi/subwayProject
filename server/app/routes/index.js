@@ -90,6 +90,12 @@ router.get('/mta', function(req, res) {
     return msg;
   }
 
+// var trainArr = [];
+// trainArr.push(currentTrains)
+// check if arr is filled.
+// compare(trainArr[trainArr.length-1], trainArr[trainArr.length-1])
+
+
 var previousTrains;
   
   getMtaData(function(err, trains) {
@@ -102,8 +108,6 @@ var previousTrains;
     }
   });
 
-
-  // var trainArr = [];
 
   //setinterval that checks mta data on interval 
   var mtaDataInterval = setInterval(function() {
@@ -160,6 +164,7 @@ var previousTrains;
                 } // closing for loop 
             })  // end of mongoose 
           }
+          previoustrains = currentTrains;
         } //closing else 
 
         currentTrains.forEach(function(train) {
@@ -167,7 +172,7 @@ var previousTrains;
         })
       }
     })
-  }, 600000) // end of setInterval function 
+  }, 60000) // end of setInterval function 
   
   
 })
