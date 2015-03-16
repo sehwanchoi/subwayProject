@@ -33,7 +33,6 @@ app.controller('homeCtrl', function($scope, $rootScope, $timeout, mtaFactory, Au
 				scope.user = user;
 			});
 		};
-
+		
 		$rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
-
 })

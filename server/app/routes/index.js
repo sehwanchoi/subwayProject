@@ -65,22 +65,17 @@ router.get('/mta', function(req, res) {
     })
   }; // end of getMtaData;
 
-  /**
-   * [check previous status description]
-   * @param  {[type]} previous [description]
-   * @param  {[type]} new      [description]
-   * @return {[either false, or if true, tell you which trains are different]}          [Boolean or array of train changes with new status]
-   */
+  
+  // compare prev with curr train 
  
   var checkPrevTrains = function (arr1, arr2 ){
     var msg = [];
     if(arr1 === null){
-    arr1 == arr2
+    arr1 == arr2;
     
     } else {
         for(var i = 0; i < arr1.length; i++){
             if(arr1[i].status === arr2[i].status){
-            console.log("nothing");
             } else {
             var obj = {
                 line: arr1[i].nema,
@@ -90,31 +85,42 @@ router.get('/mta', function(req, res) {
             msg.push(obj)
             }
         }
+        arr1 == arr2;
     }
     return msg;
   }
 
+var previousTrains;
+  
   getMtaData(function(err, trains) {
     if (err) {
       console.error(err)
     } else {
-      var previoustrains = trains;
+      previousTrains = trains;
+      console.log("previoustrains in getMtaData: ", previousTrains);
       res.json(trains)
     }
   });
 
 
-  //setinterval that checks mta data every 5 seconds
+  // var trainArr = [];
+
+  //setinterval that checks mta data on interval 
   var mtaDataInterval = setInterval(function() {
-    getMtaData(function(err, trains) {
+    getMtaData(function(err, currentTrains) {
+      
+      // var trainArr.push(trains);
+
       if (err) {
         console.err(err)
       } else {
         console.log(">>>>>>>>>>>>>>>>>>>NEW REQUEST", Date.now());
 
         // check if you have previous trains, if you do, check if each of the status are the same
-
-        var status = checkPrevTrains(previoustrains, trains);
+        console.log("previoustrains in setInterval: ", previousTrains);
+        console.log("current train in setinterval: ", currentTrains);
+        
+        var status = checkPrevTrains(previousTrains, currentTrains);
         
         // var status =
         //     [{line: '123', previous: 'good service', current: 'delayed' },
@@ -127,8 +133,6 @@ router.get('/mta', function(req, res) {
           console.log("there is no change")  
           console.log("status: ", status)
         } else {
-          //go implement socket.io logic to update view in the front end
-
           //check database to see which users use this line
 
           //get their numbers and use twilio to send message, ONLY IF not good service
@@ -136,9 +140,9 @@ router.get('/mta', function(req, res) {
           for(var i = 0; i < status.length; i++){
             mongoose.model('User').find({commute: status[i].line}, function(err, users){
 
-              console.log("hey just before sending text")
-              console.log("users: ",users)
-              console.log("status: ", status);
+              // console.log("hey just before sending text")
+              // console.log("users: ",users)
+              // console.log("status: ", status);
 
               for (var i = 0; i < users.length; i++){
                 client.messages.create({
@@ -158,12 +162,14 @@ router.get('/mta', function(req, res) {
           }
         } //closing else 
 
-        trains.forEach(function(train) {
+        currentTrains.forEach(function(train) {
           console.log("name: ", train.name, ", status : ", train.status);
         })
       }
     })
-  }, 60000)
+  }, 600000) // end of setInterval function 
+  
+  
 })
 
 router.use(function(req, res) {
