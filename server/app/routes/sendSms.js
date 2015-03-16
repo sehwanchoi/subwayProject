@@ -4,7 +4,7 @@ var socketio = require('../../start.js').server;
 
 var router = require('express').Router();
 
-var io = require('../../io')(socketio);
+// var io = require('../../io')(socketio);
 
 
 module.exports = router;
