@@ -14,18 +14,17 @@ var client = require('twilio')(accountSid, authToken);
 
 router.post('/', function(req, res) {
 
-
-  client.messages.create({
-    body: "Hi " + req.body.data.name + ". The " + req.body.train.name + " train totally sucks. Its current status is: " + req.body.train.status + ". Plan accordingly. Maybe move?",
-    to: req.body.data.phoneNumber,
-    from: "+12012685286"
-  }, function(err, message) {
-    if (err) {
-      console.error(err)
-    } else {
-      console.log("message", message);
-    }
-  });
+  // client.messages.create({
+  //   body: "Hi " + req.body.data.name + ". The " + req.body.train.name + " train totally sucks. Its current status is: " + req.body.train.status + ". Plan accordingly. Maybe move?",
+  //   to: req.body.data.phoneNumber,
+  //   from: "+12012685286"
+  // }, function(err, message) {
+  //   if (err) {
+  //     console.error(err)
+  //   } else {
+  //     console.log("message", message);
+  //   }
+  // });
 })
 
 // router.sendMessage = function(message) {
@@ -56,19 +55,4 @@ router.post('/', function(req, res) {
 //     console.log('anything?')
 //   });
 // });
-
-
-  // client.messages.create({
-  //   body: "Hi " + req.body.data.name + ". The " + req.body.train.name + " train totally sucks. Its current status is: " + req.body.train.status,
-
-  //   to: "19173741784",
-  //   from: "+12012685286"
-  // }, function(err, message) {
-  //   if (err) {
-  //     console.error(err)
-  //   } else {
-  //     console.log("message", message);
-  //     }
-  //   });
-
 

@@ -71,21 +71,20 @@ router.get('/mta', function(req, res) {
   var checkPrevTrains = function (arr1, arr2 ){
     var msg = [];
     if(arr1 === null){
-    arr1 == arr2;
-    
+    arr1 = arr2;
     } else {
         for(var i = 0; i < arr1.length; i++){
             if(arr1[i].status === arr2[i].status){
             } else {
             var obj = {
-                line: arr1[i].nema,
+                line: arr1[i].name,
                 previous: arr1[i].status,
                 current: arr2[i].status
                 }
             msg.push(obj)
             }
         }
-        arr1 == arr2;
+        arr1 = arr2;
     }
     return msg;
   }
@@ -94,6 +93,38 @@ router.get('/mta', function(req, res) {
 // trainArr.push(currentTrains)
 // check if arr is filled.
 // compare(trainArr[trainArr.length-1], trainArr[trainArr.length-1])
+
+
+var getFakeData = function (){
+  var arr1 = [ { name: '123', status: 'GOOD SERVICE', text: '' },
+  { name: '456', status: 'GOOD SERVICE', text: '' },
+  { name: '7', status: 'GOOD SERVICE', text: '' },
+  { name: 'ACE', status: 'GOOD SERVICE', text: '' },
+  { name: 'BDFM', status: 'GOOD SERVICE', text: '' },
+  { name: 'G', status: 'GOOD SERVICE', text: '' },
+  { name: 'JZ', status: 'GOOD SERVICE', text: '' },
+  { name: 'L', status: 'GOOD SERVICE', text: '' },
+  { name: 'NQR', status: 'GOOD SERVICE', text: '' },
+  { name: 'S', status: 'GOOD SERVICE', text: '' } ]
+
+  var arr2= [ { name: '123', status: 'GOOD SERVICE', text: '' },
+  { name: '456', status: 'GOOD SERVICE', text: '' },
+  { name: '7', status: 'GOOD SERVICE', text: '' },
+  { name: 'ACE', status: 'GOOD SERVICE', text: '' },
+  { name: 'BDFM', status: 'GOOD SERVICE', text: '' },
+  { name: 'G', status: 'GOOD SERVICE', text: '' },
+  { name: 'JZ', status: 'Delayed', text: '' },
+  { name: 'L', status: 'GOOD SERVICE', text: '' },
+  { name: 'NQR', status: 'GOOD SERVICE', text: '' },
+  { name: 'S', status: 'GOOD SERVICE', text: '' } ]
+
+  if (Math.random() > 0.5){
+    return arr1;
+  } else {
+    return arr2;
+  }
+}
+
 
 
 var previousTrains;
@@ -108,22 +139,22 @@ var previousTrains;
     }
   });
 
-
+  var currentTrains;
   //setinterval that checks mta data on interval 
-  var mtaDataInterval = setInterval(function() {
-    getMtaData(function(err, currentTrains) {
-      
-      // var trainArr.push(trains);
 
+  // make a function getting MTA data and returns the data
+  // as getFackeData function and call it in the setInterval function like we did in getFakeData()?
+
+  var mtaDataInterval = setInterval(function() {
+     // currentTrains = getFakeData();
+    getMtaData(function(err, currentTrains) {
       if (err) {
         console.err(err)
       } else {
         console.log(">>>>>>>>>>>>>>>>>>>NEW REQUEST", Date.now());
-
-        // check if you have previous trains, if you do, check if each of the status are the same
-        console.log("previoustrains in setInterval: ", previousTrains);
-        console.log("current train in setinterval: ", currentTrains);
         
+        console.log("current: ", currentTrains);
+
         var status = checkPrevTrains(previousTrains, currentTrains);
         
         // var status =
@@ -132,25 +163,22 @@ var previousTrains;
 
         var statusMap = status;
 
+        console.log("------------------------");
+        console.log("status: ", status);
 
         if (status.length < 1) {
           console.log("there is no change")  
-          console.log("status: ", status)
+          previousTrains = currentTrains;
+          console.log("previousTrains in if: ", previousTrains);
+          // console.log("status: ", status)
         } else {
-          //check database to see which users use this line
-
-          //get their numbers and use twilio to send message, ONLY IF not good service
-
+          
           for(var i = 0; i < status.length; i++){
             mongoose.model('User').find({commute: status[i].line}, function(err, users){
 
-              // console.log("hey just before sending text")
-              // console.log("users: ",users)
-              // console.log("status: ", status);
-
               for (var i = 0; i < users.length; i++){
                 client.messages.create({
-                  body: "Hi " + users[i].name + ". The " + users[i].commute + " train totally sucks. Its current status is: " + statusMap[i].current,
+                  body: "Hi " + users[i].name + ". The " + users[i].commute + " train totally sucks. Its status changed from: " + statusMap[i].previous + "to " + statusMap[i].current,
 
                   to: users[i].phoneNumber,
                   from: "+12012685286"
@@ -163,18 +191,20 @@ var previousTrains;
                   });
                 } // closing for loop 
             })  // end of mongoose 
-          }
-          previoustrains = currentTrains;
+          } // end of for loop 
+
+          console.log("previoustrains: ", previousTrains);
+          console.log("currentTrains: ", currentTrains);
+          previousTrains = currentTrains;
+          console.log("previoustrains: ", previousTrains);
         } //closing else 
 
         currentTrains.forEach(function(train) {
           console.log("name: ", train.name, ", status : ", train.status);
         })
-      }
+      } // end of else 
     })
-  }, 60000) // end of setInterval function 
-  
-  
+  }, 3000) // end of setInterval function    
 })
 
 router.use(function(req, res) {
