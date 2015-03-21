@@ -16,8 +16,8 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
     mtaFactory.getServiceInfo().then(function(data) {
       $scope.userTrains = [];
       var trainNames = _.pluck(data, "name");
-      console.log('pluck train names', trainNames);
-      console.log('user trains', $scope.user.commute);
+      // console.log('pluck train names', trainNames);
+      // console.log('user trains', $scope.user.commute);
 
       $scope.user.commute.forEach(function(train) {
         var userTrain = {};
@@ -72,18 +72,6 @@ app.controller('profileCtrl', function($scope, AuthService, $http, mtaFactory, $
 
     modalInstance.result.then(function() {
       return sendMessage();
-    });
-    
+    }); 
   }
-
-
-  // socket.emit('disasterStatus', function() {
-  //   console.log('getting here?');
-  //   $scope.userTrains.map(function(train) {
-  //     train.status = "DISASTER";
-  //   })
-
-  // })
-
-
 });

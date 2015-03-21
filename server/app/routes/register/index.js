@@ -7,14 +7,11 @@ module.exports = router;
 router.post('/', function(req, res, next) {
 	
 	var body = req.body;
-	console.log('body: ', body);
-
     var email = req.body.email;
     var password = req.body.password;
     var phoneNumber = req.body.phoneNumber;
     var name = req.body.name;
     var commute = req.body.commute;
-    console.log('COMMMUUUUTE', commute);
     var time = req.body.time;
 
 	mongoose.model('User').findOne({email: email}, function(err, user){
